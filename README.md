@@ -6,6 +6,30 @@ A scheduled function to launch attacks and follow-up.
 Alternatively, WebJobs could be used but it isn't supported for Linux runtime yet.
 https://learn.microsoft.com/en-us/azure/app-service/webjobs-create
 
+
+# Test locally
+```
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+    "type": "click",
+    "code": "io4tech",
+    "hash": "ABC123"
+}
+
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+    "type": "submit",
+    "code": "io4tech",
+    "hash": "ABC123"
+}
+```
+
+
+
 # Victim Inputs function
 A function to process events (clicks, submits) comming from the EventGrid.
 
