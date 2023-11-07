@@ -7,17 +7,10 @@ trigger:
 - main
 
 variables:
-
-  # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '89b6c3da-9a98-4d64-a6d5-8409d7d2556e'
-
-  # Function app name
-  functionAppName: 'smishy-function-inputs-io4technologies'
-
-  # Environment name
-  environmentName: 'smishy-function-inputs-io4technologies'
-
-  # Agent VM image name
+  serviceConnection: 'smishy-clients'
+  environmentName: 'smishy-clients'
+  functionAppName: 'smishy-function-inputs-io4technologies-dev'
+  resourceGroupName: 'smishy-client-io4technologies'
   vmImageName: 'ubuntu-latest'
 
 stages:
@@ -32,7 +25,7 @@ stages:
     steps:
     - task: NodeTool@0
       inputs:
-        versionSpec: '10.x'
+        versionSpec: '18.x'
       displayName: 'Install Node.js'
 
     - script: |
@@ -77,7 +70,8 @@ stages:
           - task: AzureFunctionApp@1
             displayName: 'Azure Functions App Deploy: smishy-function-inputs-io4technologies'
             inputs:
-              azureSubscription: '$(azureSubscription)'
+              azureSubscription: '$(serviceConnection)'
               appType: functionAppLinux
               appName: $(functionAppName)
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              resourceGroupName: $(resourceGroupName)
