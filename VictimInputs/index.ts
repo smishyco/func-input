@@ -18,18 +18,18 @@ const eventGridTrigger: AzureFunction = async function (context: Context, eventG
 
 };
 
-async function logEvent(event) {
+async function logEvent(data: any) {
     // { 
     //     type: // click, submit
     //     code: // clientShortCode
     //     hash: // attackShortCode
     // }
     const attackEvent = { 
-        type: event.type, 
-        clientShortCode: event.code, 
-        attackShortCode: event.hash, 
+        type: data.type, 
+        clientShortCode: data.code, 
+        attackShortCode: data.hash
     }
-    const result = await database.collection('attacks-events').insertOne(event);
+    const result = await database.collection('attacks-events').insertOne(attackEvent);
     console.log(result);
 }
 
