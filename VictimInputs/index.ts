@@ -13,6 +13,7 @@ const eventGridTrigger: AzureFunction = async function (context: Context, eventG
     //     dataVersion: "1.0",
     //     data: { type, code, hash},
     // }
+    console.log(eventGridEvent);
     await logEvent(eventGridEvent.data);
 
 };
@@ -29,6 +30,7 @@ async function logEvent(event) {
         attackShortCode: event.hash, 
     }
     const result = await database.collection('attacks-events').insertOne(event);
+    console.log(result);
 }
 
 
