@@ -7,7 +7,17 @@ Alternatively, WebJobs could be used but it isn't supported for Linux runtime ye
 https://learn.microsoft.com/en-us/azure/app-service/webjobs-create
 
 
-# Test locally
+# EventGridEvent schema
+```
+{
+    eventType: data.type,
+    subject: data.code,
+    dataVersion: "1.0",
+    data: { type, code, hash},
+}
+```
+
+# Testing locally
 ```
 POST http://localhost:3000/events
 Content-Type: application/json
