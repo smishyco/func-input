@@ -9,8 +9,8 @@ trigger:
 variables:
   serviceConnection: 'smishy-clients'
   environmentName: 'smishy-clients'
-  functionAppName: 'smishy-function-inputs-io4technologies-dev'
-  resourceGroupName: 'smishy-client-io4technologies'
+  functionAppName: 'smishy-function-inputs-wqsb'
+  resourceGroupName: 'smishy-client-wqsb'
   vmImageName: 'ubuntu-latest'
 
 stages:
@@ -68,7 +68,7 @@ stages:
         deploy:
           steps:
           - task: AzureFunctionApp@1
-            displayName: 'Azure Functions App Deploy: smishy-function-inputs-io4technologies'
+            displayName: 'Azure Functions App Deploy: smishy-function-inputs-wqsb'
             inputs:
               azureSubscription: '$(serviceConnection)'
               appType: functionAppLinux
